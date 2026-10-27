@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace test_connect
@@ -37,7 +31,7 @@ namespace test_connect
                 {
                     cmd.Parameters.AddWithValue("@title", Program.Hall);
 
-                    // ✅ Передаем в адаптер готовую команду (cmd), а не текст и подключение
+                    // Передаем в адаптер готовую команду (cmd), а не текст и подключение
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         DataTable table = new DataTable();
@@ -54,9 +48,7 @@ namespace test_connect
                             dgvCinema.Columns[4].Width = 60;
                             dgvCinema.Columns[5].Width = 60;
                             dgvCinema.Columns[6].Width = 60;
-                        }
-
-                        
+                        }                                                
                     }
                 }
             }
@@ -72,6 +64,5 @@ namespace test_connect
 
             hall.ShowDialog();      
         }
-
     }
 }

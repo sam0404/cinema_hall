@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -21,7 +23,7 @@ namespace test_connect
 
 
         private bool isCancelSelect = false;
-        private List<Place> buttonsPlace = new List<Place>();
+        private Dictionary<string, Place> buttonsPlace = new Dictionary<string, Place>();
         private Panel hall = null;
 
         private int minSize = 0;
@@ -116,9 +118,44 @@ namespace test_connect
 
                 p1.Click += new System.EventHandler(this.button1_Click_1);
 
-                buttonsPlace.Add(p1);
+                buttonsPlace.Add(p1.Text, p1);
             }  
 
+        }
+
+        private void LoadDataFromDB()
+        {
+            string sql = "SELECT * FROM ticket_view where Зал = @title";
+
+            using (SqlConnection conn = new SqlConnection(Program.ConnString))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", Program.Hall);
+
+                  
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable table = new DataTable();
+                        adapter.Fill(table); 
+
+                        foreach (DataRow row in table.Rows)
+                        {
+                         // Обращение по имени колонки (безопасно)
+                            string place = row["Место"].ToString();
+                            int state = (int)row["Состояние"];
+
+                            if (state == 1)
+                            {
+                                buttonsPlace[place].placeType = PlaceType.BUSY;
+                                buttonsPlace[place].BackColor = Color.DarkOliveGreen;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -163,15 +200,15 @@ namespace test_connect
 
         private void buy_Click(object sender, EventArgs e)
         {
-            buttonsPlace.ForEach((place) =>
+            foreach (KeyValuePair<string, Place> pair in buttonsPlace)
             {
-                if (place.placeType == PlaceType.FREE && place.placeStatus == PlaceStatus.SELECTED)
+                if (pair.Value.placeType == PlaceType.FREE && pair.Value.placeStatus == PlaceStatus.SELECTED)
                 {
-                    place.placeType = PlaceType.BUSY;
-                    place.placeStatus = PlaceStatus.NONE;
-                    place.BackColor = Color.DarkOliveGreen;
+                    pair.Value.placeType = PlaceType.BUSY;
+                    pair.Value.placeStatus = PlaceStatus.NONE;
+                    pair.Value.BackColor = Color.DarkOliveGreen;
                 }
-            });
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -181,29 +218,29 @@ namespace test_connect
 
         private void AcceptCancel_Click(object sender, EventArgs e)
         {
-            buttonsPlace.ForEach((place) =>
+            foreach (KeyValuePair<string, Place> pair in buttonsPlace)
             {
-                if (place.placeType == PlaceType.BUSY && place.placeStatus == PlaceStatus.SELECTED)
+                if (pair.Value.placeType == PlaceType.BUSY && pair.Value.placeStatus == PlaceStatus.SELECTED)
                 {
-                    place.placeType = PlaceType.FREE;
-                    place.placeStatus = PlaceStatus.NONE;
-                    place.BackColor = SystemColors.GradientInactiveCaption;
+                    pair.Value.placeType = PlaceType.FREE;
+                    pair.Value.placeStatus = PlaceStatus.NONE;
+                    pair.Value.BackColor = SystemColors.GradientInactiveCaption;
                 }
-            });
+            }           
 
             isCancelSelect = false;
         }
 
         private void Clear_Click(object sender, EventArgs e)
         {
-            buttonsPlace.ForEach((place) =>
+            foreach (KeyValuePair<string, Place> pair in buttonsPlace)
             {
-                if (place.placeType == PlaceType.FREE && place.placeStatus == PlaceStatus.SELECTED)
+                if (pair.Value.placeType == PlaceType.FREE && pair.Value.placeStatus == PlaceStatus.SELECTED)
                 {
-                    place.placeStatus = PlaceStatus.NONE;
-                    place.BackColor = SystemColors.GradientInactiveCaption;
+                    pair.Value.placeStatus = PlaceStatus.NONE;
+                    pair.Value.BackColor = SystemColors.GradientInactiveCaption;
                 }
-            });
+            }
         }
 
         private void Hall_Load(object sender, EventArgs e)
@@ -211,6 +248,7 @@ namespace test_connect
             CreateHall();
             CreateScreen(minSize);
             InitHall();
+            LoadDataFromDB();
         }       
     
     }
