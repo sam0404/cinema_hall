@@ -94,6 +94,7 @@
             this.Name = "FilmsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FilmsForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FilmsForm_FormClosed);
             this.Load += new System.EventHandler(this.FilmsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinema)).EndInit();
             this.ResumeLayout(false);

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace test_connect
@@ -24,70 +19,6 @@ namespace test_connect
         {
             LoadHalls();    
         }
-        private void LoadTickets()
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка загрузки:\n" + ex.Message,
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string name = Microsoft.VisualBasic.Interaction.InputBox(
-                    "Введите название подразделения:", "Добавление", "");
-
-                // Если пусто (отмена или ничего не ввели) — выходим МОЛЧА
-                if (string.IsNullOrWhiteSpace(name)) return;
-
-                using (SqlConnection conn = new SqlConnection(Program.ConnString))
-                {
-                    conn.Open();
-
-                    // Проверка на дубликат
-                    SqlCommand checkCmd = new SqlCommand(
-                        "SELECT COUNT(*) FROM Department WHERE Department_name = @name", conn);
-                    checkCmd.Parameters.AddWithValue("@name", name.Trim());
-                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
-
-                    if (count > 0)
-                    {
-                        MessageBox.Show("Такое подразделение уже существует.",
-                            "Дубликат", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    SqlCommand cmd = new SqlCommand(
-                        "INSERT INTO Department (Department_name) VALUES (@name)", conn);
-                    cmd.Parameters.AddWithValue("@name", name.Trim());
-                    cmd.ExecuteNonQuery();
-                }
-
-                MessageBox.Show("Подразделение успешно добавлено.",
-                    "Готово", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-               // DepartmentForm_Load(sender, e);
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("Не удалось добавить подразделение.\n\nПричина: " + ex.Message,
-                    "Ошибка базы данных", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Произошла непредвиденная ошибка.\n\nПричина: " + ex.Message,
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-      
 
         private void LoadHalls()
         {
@@ -117,6 +48,7 @@ namespace test_connect
                         index++;
                         //MessageBox.Show(title, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    conn.Close();
                 }
                
             }
@@ -137,9 +69,5 @@ namespace test_connect
 
             films.ShowDialog();
         }
-
-       
     }
-
-
 }

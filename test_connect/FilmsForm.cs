@@ -25,8 +25,6 @@ namespace test_connect
 
             using (SqlConnection conn = new SqlConnection(Program.ConnString))
             {
-                conn.Open();
-
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@title", Program.Hall);
@@ -56,13 +54,16 @@ namespace test_connect
 
         private void Open_Click(object sender, EventArgs e)
         {
-            if (hall == null)
-            {
-                int totalPlaces = (int)dgvCinema.CurrentRow.Cells[4].Value;
-                hall = new Hall(totalPlaces);
-            }
+            hall = new Hall((int)dgvCinema.CurrentRow.Cells[4].Value, (TimeSpan)dgvCinema.CurrentRow.Cells[2].Value, (DateTime)dgvCinema.CurrentRow.Cells[3].Value);            
 
-            hall.ShowDialog();      
+            hall.ShowDialog();
+
+            LoadFilms();
+        }
+
+        private void FilmsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            hall = null;
         }
     }
 }
