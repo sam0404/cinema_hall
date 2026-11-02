@@ -5,21 +5,21 @@ using System.Windows.Forms;
 
 namespace test_connect
 {
-    public partial class FilmsForm : Form
+    public partial class SeansForm : Form
     {
         private Hall hall = null;
-        public FilmsForm()
+        public SeansForm()
         {
             InitializeComponent();
         }
 
         private void FilmsForm_Load(object sender, EventArgs e)
         {
-            LoadFilms();
+            LoadSeans();
         }
         private int ID { set; get; }
 
-        private void LoadFilms()
+        private void LoadSeans()
         {
             string sql = "SELECT * FROM ticket_view_seans where Зал = @title";
 
@@ -58,7 +58,7 @@ namespace test_connect
 
             hall.ShowDialog();
 
-            LoadFilms();
+            LoadSeans();
         }
 
         private void FilmsForm_FormClosed(object sender, FormClosedEventArgs e)

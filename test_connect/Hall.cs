@@ -29,16 +29,26 @@ namespace test_connect
         private int offsetY = 0;
 
         private int hallID = 0;
+        private float fontSize = 1;
         public Hall()
         {
             InitializeComponent();
         }
-        public Hall(int totalAmountPlaces, TimeSpan time, DateTime date, int placesInRow = 10)
+        public Hall(int totalAmountPlaces, TimeSpan time, DateTime date)
         {
             InitializeComponent();
 
             TotalAmountPlaces = totalAmountPlaces;
-            PlacesInRow = placesInRow;
+            if (Program.Hall == "Стандартный")
+            {
+                PlacesInRow = 15;
+                fontSize = 8f;
+            }
+            else
+            {
+                PlacesInRow = 10;
+                fontSize = 6f;
+            }
             _time = time;
             _date = date;
         }
@@ -123,6 +133,7 @@ namespace test_connect
                 p1.Name = (i + 1).ToString();
                 p1.Size = new Size(size, size);
                 p1.TabIndex = 0;
+                p1.Font = new Font(p1.Font.FontFamily, fontSize); ;
                 p1.Text =row.ToString() + " " + (i % PlacesInRow + 1).ToString();
                 p1.UseVisualStyleBackColor = true;
                 p1.BackColor = SystemColors.GradientInactiveCaption;

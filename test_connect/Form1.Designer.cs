@@ -35,6 +35,7 @@
             this.placetypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cinemaPanel = new System.Windows.Forms.Panel();
+            this.btnFilm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ticketBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.filmhallBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.placetypeBindingSource)).BeginInit();
@@ -45,25 +46,13 @@
             // 
             this.ticketBindingSource.DataMember = "ticket";
             // 
-            // cinemaDataSet
-            // 
-            // 
             // filmhallBindingSource
             // 
             this.filmhallBindingSource.DataMember = "film_hall";
             // 
-            // film_hallTableAdapter
-            // 
-            // 
             // placetypeBindingSource
             // 
             this.placetypeBindingSource.DataMember = "place_type";
-            // 
-            // place_typeTableAdapter
-            // 
-            // 
-            // ticketTableAdapter
-            // 
             // 
             // pictureBox1
             // 
@@ -87,17 +76,31 @@
             this.cinemaPanel.Size = new System.Drawing.Size(140, 448);
             this.cinemaPanel.TabIndex = 2;
             // 
+            // btnFilm
+            // 
+            this.btnFilm.BackColor = System.Drawing.Color.Goldenrod;
+            this.btnFilm.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnFilm.Location = new System.Drawing.Point(249, 469);
+            this.btnFilm.Name = "btnFilm";
+            this.btnFilm.Size = new System.Drawing.Size(147, 61);
+            this.btnFilm.TabIndex = 3;
+            this.btnFilm.Text = "Фильмы";
+            this.btnFilm.UseVisualStyleBackColor = false;
+            this.btnFilm.Click += new System.EventHandler(this.btnFilm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 572);
+            this.Controls.Add(this.btnFilm);
             this.Controls.Add(this.cinemaPanel);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ticketBindingSource)).EndInit();
@@ -115,6 +118,7 @@
         private System.Windows.Forms.BindingSource ticketBindingSource;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel cinemaPanel;
+        private System.Windows.Forms.Button btnFilm;
     }
 }
 

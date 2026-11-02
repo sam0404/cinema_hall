@@ -8,12 +8,30 @@
      <Namespaces>
       <Namespace Name="test_connect">
        <Types>
+        <Type Name="Add_Edit_FilmForm" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#AddFilm()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-11-02 20:39:20Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Add_Edit_FilmForm.cs" Line="93">Объект "'conn'" можно удалять более одного раза в методе 'Add_Edit_FilmForm.AddFilm()'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 93</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#EditFilm()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-11-02 20:39:20Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Add_Edit_FilmForm.cs" Line="114">Объект "'conn'" можно удалять более одного раза в методе 'Add_Edit_FilmForm.EditFilm()'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 114</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
         <Type Name="Form1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
           <Member Name="#LoadHalls()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-10-28 19:19:43Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Form1.cs" Line="52">Объект "'conn'" можно удалять более одного раза в методе 'Form1.LoadHalls()'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 52</Issue>
+            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-11-02 20:39:20Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Form1.cs" Line="54">Объект "'conn'" можно удалять более одного раза в методе 'Form1.LoadHalls()'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 54</Issue>
             </Message>
            </Messages>
           </Member>
@@ -23,15 +41,15 @@
          <Members>
           <Member Name="#Add_Place_DB(test_connect.Place)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-10-28 19:19:43Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Hall.cs" Line="302">Объект "'conn'" можно удалять более одного раза в методе 'Hall.Add_Place_DB(Place)'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 302</Issue>
+            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-11-02 20:39:20Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Hall.cs" Line="313">Объект "'conn'" можно удалять более одного раза в методе 'Hall.Add_Place_DB(Place)'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 313</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#Edit_Hall(test_connect.Place)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
            <Messages>
-            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-10-28 19:19:43Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Hall.cs" Line="282">Объект "'conn'" можно удалять более одного раза в методе 'Hall.Edit_Hall(Place)'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 282</Issue>
+            <Message TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2026-11-02 20:39:20Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="f:\IPK\VisualProgramming\test_connect\test_connect" File="Hall.cs" Line="293">Объект "'conn'" можно удалять более одного раза в методе 'Hall.Edit_Hall(Place)'. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 293</Issue>
             </Message>
            </Messages>
           </Member>
@@ -48,7 +66,7 @@
   <Rule TypeName="Не ликвидировать объекты несколько раз" Category="Microsoft.Usage" CheckId="CA2202">
    <Name>Не ликвидировать объекты несколько раз</Name>
    <Description>Правильно реализованный метод Dispose может вызываться неоднократно без создания исключения. Однако такой гарантии нет, и чтобы предотвратить создание System.ObjectDisposedException, не следует вызывать метод Dispose для объекта более одного раза.</Description>
-   <Resolution Name="Default">Объект "{0}" можно удалять более одного раза в методе {1}. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 302</Resolution>
+   <Resolution Name="Default">Объект "{0}" можно удалять более одного раза в методе {1}. Чтобы избежать исключения System.ObjectDisposedException, следует вызывать метод "Dispose" для объекта только один раз.: Lines: 313</Resolution>
    <Owner>RuleOwner</Owner>
    <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
    <Email />

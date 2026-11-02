@@ -8,7 +8,9 @@ namespace test_connect
 {
     public partial class Form1 : Form
     {
-        private FilmsForm films = null;
+        private SeansForm seans = null;
+        private FilmForm films = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -62,9 +64,19 @@ namespace test_connect
         {
             Program.Hall = (sender as Button).Text;
 
+            if (seans == null)
+            {
+                seans = new SeansForm();
+            }
+
+            seans.ShowDialog();
+        }
+
+        private void btnFilm_Click(object sender, EventArgs e)
+        {
             if (films == null)
             {
-                films = new FilmsForm();
+                films = new FilmForm();
             }
 
             films.ShowDialog();

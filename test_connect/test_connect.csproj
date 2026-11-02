@@ -46,11 +46,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilmsForm.cs">
+    <Compile Include="Add_Edit_FilmForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FilmsForm.Designer.cs">
-      <DependentUpon>FilmsForm.cs</DependentUpon>
+    <Compile Include="Add_Edit_FilmForm.Designer.cs">
+      <DependentUpon>Add_Edit_FilmForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BasePlace.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Delete_FilmForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Delete_FilmForm.Designer.cs">
+      <DependentUpon>Delete_FilmForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilmForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilmForm.Designer.cs">
+      <DependentUpon>FilmForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeansForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeansForm.Designer.cs">
+      <DependentUpon>SeansForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -70,8 +91,17 @@
     <Compile Include="PlaceType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FilmsForm.resx">
-      <DependentUpon>FilmsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Add_Edit_FilmForm.resx">
+      <DependentUpon>Add_Edit_FilmForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Delete_FilmForm.resx">
+      <DependentUpon>Delete_FilmForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilmForm.resx">
+      <DependentUpon>FilmForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeansForm.resx">
+      <DependentUpon>SeansForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

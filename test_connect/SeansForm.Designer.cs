@@ -1,6 +1,6 @@
 ﻿namespace test_connect
 {
-    partial class FilmsForm
+    partial class SeansForm
     {
         /// <summary>
         /// Required designer variable.
