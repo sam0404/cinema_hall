@@ -5,10 +5,15 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace test_connect
+namespace cinema
 {
     public partial class Hall : Form
     {
+        private enum HallOperation {
+            BUY,
+            RETURN
+        }
+
         private TimeSpan _time;
         private DateTime _date;
 
@@ -34,20 +39,20 @@ namespace test_connect
         {
             InitializeComponent();
         }
-        public Hall(int totalAmountPlaces, TimeSpan time, DateTime date)
+        public Hall(int totalAmountPlaces,int placeInRow, TimeSpan time, DateTime date)
         {
             InitializeComponent();
 
             TotalAmountPlaces = totalAmountPlaces;
-            if (Program.Hall == "Стандартный")
+            PlacesInRow = placeInRow;
+
+            if (placeInRow > 10)
             {
-                PlacesInRow = 15;
-                fontSize = 8f;
+                fontSize = 6f;
             }
             else
             {
-                PlacesInRow = 10;
-                fontSize = 6f;
+                fontSize = 8f;
             }
             _time = time;
             _date = date;
@@ -133,13 +138,12 @@ namespace test_connect
                 p1.Name = (i + 1).ToString();
                 p1.Size = new Size(size, size);
                 p1.TabIndex = 0;
-                p1.Font = new Font(p1.Font.FontFamily, fontSize); ;
+                p1.Font = new Font(p1.Font.FontFamily, fontSize);
                 p1.Text =row.ToString() + " " + (i % PlacesInRow + 1).ToString();
                 p1.UseVisualStyleBackColor = true;
                 p1.BackColor = SystemColors.GradientInactiveCaption;
 
                 p1.Click += new System.EventHandler(this.button1_Click_1);
-
                 buttonsPlace.Add(p1.Text, p1);
             }
 
@@ -173,6 +177,7 @@ namespace test_connect
             p1.Location = new Point(positionX, positionY);
             p1.Name = (_lastRow * PlacesInRow + _lastColumn + 1).ToString();
             p1.Size = new Size(size, size);
+            p1.Font = new Font(p1.Font.FontFamily, fontSize);
             p1.TabIndex = 0;
             p1.Text = _lastRow.ToString() + " " + (_lastColumn % PlacesInRow + 1).ToString();
             
@@ -195,7 +200,7 @@ namespace test_connect
 
         private void FillFromDB()
         {
-            string sql = "SELECT * FROM ticket_view where Зал = @title and Время = @time and Дата = @date";
+            string sql = "SELECT * FROM vw_TicketView where Зал = @title and Время = @time and Дата = @date";
 
             using (SqlConnection conn = new SqlConnection(Program.ConnString))
             {
@@ -210,15 +215,18 @@ namespace test_connect
                     {
                         DataTable table = new DataTable();
                         adaptar.Fill(table);
+                       
+
                         // Обращение по имени колонки (безопасно)
                         foreach (DataRow row in table.Rows)
-                        {
+                        {                            
                             string place = row["Место"].ToString();
+                           
                             int state = (int)row["Состояние"];
 
                             buttonsPlace[place].TicketID = (int)row["Билет_ID"];
                             buttonsPlace[place].PlaceTitle = place;
-                            buttonsPlace[place].StateForSale = (int)row["Состояние"];
+                            buttonsPlace[place].StateForSale = state;
                             hallID = buttonsPlace[place].HallID = (int)row["Зал_ID"];
                             buttonsPlace[place].TimeID = (int)row["Время_ID"];
                             buttonsPlace[place].FilmID = (int)row["Фильм_ID"];
@@ -273,7 +281,7 @@ namespace test_connect
             }
         }
 
-        private void Edit_Hall(Place place)
+        private void Edit_Hall(Place place, HallOperation operation)
         {
             using (SqlConnection conn = new SqlConnection(Program.ConnString))
             {
@@ -285,11 +293,21 @@ namespace test_connect
                     cmd.Parameters.AddWithValue("@ticket_id", place.TicketID);
                     cmd.Parameters.AddWithValue("@is_sell", place.StateForSale);
 
-                    int rows = cmd.ExecuteNonQuery(); // Возвращает количество добавленных строк
-                    MessageBox.Show("Row "+ rows.ToString());
-                }
+                    cmd.ExecuteNonQuery();
 
-                conn.Close();
+                    switch (operation)
+                    {
+                        case HallOperation.BUY:
+                            MessageBox.Show("Билет куплен");
+
+                            break;
+
+                        case HallOperation.RETURN:
+                            MessageBox.Show("Билет возвращен");
+
+                            break;
+                    } 
+                }
             }
         }
 
@@ -306,10 +324,7 @@ namespace test_connect
                     cmd.Parameters.AddWithValue("@id_hall", place.HallID);
 
                     cmd.ExecuteNonQuery();
-
                 }
-
-                conn.Close();
             }
         }
 
@@ -322,7 +337,7 @@ namespace test_connect
                     if (pair.Value.placeType == PlaceType.FREE && pair.Value.placeStatus == PlaceStatus.SELECTED)
                     {
                         pair.Value.StateForSale = 1;
-                        Edit_Hall(pair.Value);
+                        Edit_Hall(pair.Value, HallOperation.BUY);
                         pair.Value.placeType = PlaceType.BUSY;
                         pair.Value.placeStatus = PlaceStatus.NONE;
                         pair.Value.BackColor = Color.DarkOliveGreen;
@@ -347,7 +362,7 @@ namespace test_connect
                 if (pair.Value.placeType == PlaceType.BUSY && pair.Value.placeStatus == PlaceStatus.SELECTED)
                 {
                     pair.Value.StateForSale = 0;
-                    Edit_Hall(pair.Value);
+                    Edit_Hall(pair.Value, HallOperation.RETURN);
                     pair.Value.placeType = PlaceType.FREE;
                     pair.Value.placeStatus = PlaceStatus.NONE;
                     pair.Value.BackColor = SystemColors.GradientInactiveCaption;
@@ -413,23 +428,28 @@ namespace test_connect
 
         private void Remove_Place_DB(Place place)
         {
-            string sql = "DELETE FROM place WHERE place_title = @PlaceTitle and id_hall = @IdHall";
-
-            using (SqlConnection conn = new SqlConnection(Program.ConnString))
+            try
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlConnection conn = new SqlConnection(Program.ConnString))
                 {
-                    cmd.Parameters.AddWithValue("@PlaceTitle", place.PlaceTitle);
-                    cmd.Parameters.AddWithValue("@IdHall", place.HallID);
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("delete_place", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    int rows = cmd.ExecuteNonQuery(); // Возвращает количество удаленных строк
+                        cmd.Parameters.AddWithValue("@place_title", place.PlaceTitle);
+                        cmd.Parameters.AddWithValue("@id_hall", place.HallID);
 
-                    if (rows > 0)
-                        MessageBox.Show("Билет успешно удален!");
-                    else
-                        MessageBox.Show("Билет с таким ID не найден.");
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Место успешно удалено!");
+                    }
                 }
+            }
+            catch (SqlException ex)
+            {
+                // Ловим ошибки RAISERROR (место не найдено или есть проданный билет)
+                MessageBox.Show(ex.Message, "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -456,12 +476,6 @@ namespace test_connect
                 Remove_Place_DB(place);
                 place = null;
             }
-        }
-
-        private void Hall_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            
-        }       
-    
+        } 
     }
 }

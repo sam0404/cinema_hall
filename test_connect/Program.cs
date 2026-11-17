@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace test_connect
+namespace cinema
 {
     static class Program
     {
@@ -16,7 +15,7 @@ namespace test_connect
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new CinemaForm());
         }
     }
 }

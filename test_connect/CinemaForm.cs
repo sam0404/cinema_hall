@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace test_connect
+namespace cinema
 {
-    public partial class Form1 : Form
+    public partial class CinemaForm : Form
     {
         private SeansForm seans = null;
         private FilmForm films = null;
+        private HallsForm halls = null;
 
-        public Form1()
+        private Dictionary<string, HallData> hallsData = new Dictionary<string, HallData>();
+
+
+        public CinemaForm()
         {
             InitializeComponent();
         }
@@ -24,9 +29,12 @@ namespace test_connect
 
         private void LoadHalls()
         {
+            cinemaPanel.Controls.Clear();
+            hallsData.Clear();
+
             try
             {
-                string command = "select title from cinema_hall";
+                string command = "select * from vw_HallInfo";
 
                 using (SqlConnection conn = new SqlConnection(Program.ConnString))
                 {
@@ -39,7 +47,8 @@ namespace test_connect
 
                     foreach (DataRow row in table.Rows)
                     {
-                        string title = row["title"].ToString();
+                        string title = row["Название зала"].ToString();
+                        hallsData.Add(title, new HallData((int)row["Всего мест"], (int)row["Мест в ряду"], (int)row["id_hall"]));
                         Button selectButton = new Button();
                         cinemaPanel.Controls.Add(selectButton);
                         selectButton.Size = new Size(100, 60);
@@ -48,11 +57,8 @@ namespace test_connect
                         selectButton.Text = title;
                         selectButton.Click += new System.EventHandler(button1_Click_1);
                         index++;
-                        //MessageBox.Show(title, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    conn.Close();
-                }
-               
+                }               
             }
             catch (Exception ex)
             {
@@ -66,7 +72,7 @@ namespace test_connect
 
             if (seans == null)
             {
-                seans = new SeansForm();
+                seans = new SeansForm(hallsData[Program.Hall].PlaceInRow, hallsData[Program.Hall].ID);
             }
 
             seans.ShowDialog();
@@ -80,6 +86,17 @@ namespace test_connect
             }
 
             films.ShowDialog();
+        }
+
+        private void btnHall_Click(object sender, EventArgs e)
+        {
+            if (halls == null)
+            {
+                halls = new HallsForm();
+            }
+
+            halls.ShowDialog();
+            LoadHalls();
         }
     }
 }

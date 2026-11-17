@@ -1,4 +1,4 @@
-﻿namespace test_connect
+﻿namespace cinema
 {
     partial class SeansForm
     {
@@ -32,6 +32,7 @@
             this.Open = new System.Windows.Forms.Button();
             this.Edit = new System.Windows.Forms.Button();
             this.Delete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinema)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,29 +62,44 @@
             // 
             this.Edit.BackColor = System.Drawing.Color.SteelBlue;
             this.Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Edit.Location = new System.Drawing.Point(898, 94);
+            this.Edit.Location = new System.Drawing.Point(898, 393);
             this.Edit.Name = "Edit";
             this.Edit.Size = new System.Drawing.Size(188, 59);
             this.Edit.TabIndex = 2;
             this.Edit.Text = "Редактировать";
             this.Edit.UseVisualStyleBackColor = false;
+            this.Edit.Click += new System.EventHandler(this.Edit_Click);
             // 
             // Delete
             // 
             this.Delete.BackColor = System.Drawing.Color.LightCoral;
             this.Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Delete.Location = new System.Drawing.Point(898, 182);
+            this.Delete.Location = new System.Drawing.Point(898, 485);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(188, 59);
             this.Delete.TabIndex = 3;
             this.Delete.Text = "Удалить";
             this.Delete.UseVisualStyleBackColor = false;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
-            // FilmsForm
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.YellowGreen;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAdd.Location = new System.Drawing.Point(898, 301);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(188, 59);
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "Добавить";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // SeansForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1098, 557);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.Edit);
             this.Controls.Add(this.Open);
@@ -91,9 +107,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FilmsForm";
+            this.Name = "SeansForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FilmsForm";
+            this.Text = "Сеансы";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FilmsForm_FormClosed);
             this.Load += new System.EventHandler(this.FilmsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCinema)).EndInit();
@@ -107,5 +123,6 @@
         private System.Windows.Forms.Button Open;
         private System.Windows.Forms.Button Edit;
         private System.Windows.Forms.Button Delete;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

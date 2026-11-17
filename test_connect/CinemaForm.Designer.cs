@@ -1,6 +1,6 @@
-﻿namespace test_connect
+﻿namespace cinema
 {
-    partial class Form1
+    partial class CinemaForm
     {
         /// <summary>
         /// Требуется переменная конструктора.
@@ -29,30 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.ticketBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.filmhallBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.placetypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CinemaForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cinemaPanel = new System.Windows.Forms.Panel();
             this.btnFilm = new System.Windows.Forms.Button();
+            this.btnHall = new System.Windows.Forms.Button();
+            this.ticketBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.filmhallBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.placetypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ticketBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.filmhallBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.placetypeBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ticketBindingSource
-            // 
-            this.ticketBindingSource.DataMember = "ticket";
-            // 
-            // filmhallBindingSource
-            // 
-            this.filmhallBindingSource.DataMember = "film_hall";
-            // 
-            // placetypeBindingSource
-            // 
-            this.placetypeBindingSource.DataMember = "place_type";
             // 
             // pictureBox1
             // 
@@ -70,10 +59,10 @@
             // cinemaPanel
             // 
             this.cinemaPanel.AutoScroll = true;
-            this.cinemaPanel.BackColor = System.Drawing.Color.DimGray;
-            this.cinemaPanel.Location = new System.Drawing.Point(901, 12);
+            this.cinemaPanel.BackColor = System.Drawing.Color.Black;
+            this.cinemaPanel.Location = new System.Drawing.Point(839, 12);
             this.cinemaPanel.Name = "cinemaPanel";
-            this.cinemaPanel.Size = new System.Drawing.Size(140, 448);
+            this.cinemaPanel.Size = new System.Drawing.Size(202, 360);
             this.cinemaPanel.TabIndex = 2;
             // 
             // btnFilm
@@ -88,25 +77,51 @@
             this.btnFilm.UseVisualStyleBackColor = false;
             this.btnFilm.Click += new System.EventHandler(this.btnFilm_Click);
             // 
-            // Form1
+            // btnHall
+            // 
+            this.btnHall.BackColor = System.Drawing.Color.Black;
+            this.btnHall.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnHall.ForeColor = System.Drawing.Color.White;
+            this.btnHall.Location = new System.Drawing.Point(839, 469);
+            this.btnHall.Name = "btnHall";
+            this.btnHall.Size = new System.Drawing.Size(153, 61);
+            this.btnHall.TabIndex = 4;
+            this.btnHall.Text = "Залы";
+            this.btnHall.UseVisualStyleBackColor = false;
+            this.btnHall.Click += new System.EventHandler(this.btnHall_Click);
+            // 
+            // ticketBindingSource
+            // 
+            this.ticketBindingSource.DataMember = "ticket";
+            // 
+            // filmhallBindingSource
+            // 
+            this.filmhallBindingSource.DataMember = "film_hall";
+            // 
+            // placetypeBindingSource
+            // 
+            this.placetypeBindingSource.DataMember = "place_type";
+            // 
+            // CinemaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 572);
+            this.Controls.Add(this.btnHall);
             this.Controls.Add(this.btnFilm);
             this.Controls.Add(this.cinemaPanel);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
+            this.Name = "CinemaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Кинотеатр";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ticketBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.filmhallBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.placetypeBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -119,6 +134,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel cinemaPanel;
         private System.Windows.Forms.Button btnFilm;
+        private System.Windows.Forms.Button btnHall;
     }
 }
 

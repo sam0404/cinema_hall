@@ -1,4 +1,4 @@
-﻿namespace test_connect
+﻿namespace cinema
 {
     partial class Delete_FilmForm
     {

@@ -1,4 +1,4 @@
-﻿namespace test_connect
+﻿namespace cinema
 {
     partial class Add_Edit_FilmForm
     {
@@ -77,7 +77,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.YellowGreen;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAdd.ForeColor = System.Drawing.Color.Snow;
-            this.btnAdd.Location = new System.Drawing.Point(564, 58);
+            this.btnAdd.Location = new System.Drawing.Point(564, 150);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(131, 46);
             this.btnAdd.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCancel.Location = new System.Drawing.Point(564, 139);
+            this.btnCancel.Location = new System.Drawing.Point(564, 80);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(131, 42);
             this.btnCancel.TabIndex = 5;
@@ -112,7 +112,6 @@
             this.MinimizeBox = false;
             this.Name = "Add_Edit_FilmForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add_Edit_FilmForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

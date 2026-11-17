@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace test_connect
+namespace cinema
 {
     public partial class FilmForm : Form
     {

@@ -1,5 +1,4 @@
-﻿using System;
-namespace test_connect
+﻿namespace cinema
 {
     public enum PlaceType
     {

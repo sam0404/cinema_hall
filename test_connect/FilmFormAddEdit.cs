@@ -1,25 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Globalization;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace test_connect
+namespace cinema
 {
     public partial class Add_Edit_FilmForm : Form
     {
-        private enum Operation
-        {
-            ADD,
-            EDIT
-        }
-
         private Operation currntOperation = Operation.ADD;
 
         private string title = "";
@@ -29,6 +17,7 @@ namespace test_connect
         public Add_Edit_FilmForm()
         {
             currntOperation = Operation.ADD;
+            Text = "Добавить фильм";
             InitializeComponent();
         }
         public Add_Edit_FilmForm(string title, string price, int id)
@@ -37,6 +26,7 @@ namespace test_connect
             currntOperation = Operation.EDIT;
             InitializeComponent();
             btnAdd.Text = "Обновить";
+            Text = "Редактировать фильм";
 
             tbFilmName.Text = title;
             tbFilmPrice.Text = price;
@@ -66,7 +56,7 @@ namespace test_connect
             else
             {
                 btnAdd.DialogResult = DialogResult.None;
-                MessageBox.Show("Все поля должны быть заполнены!",
+                MessageBox.Show("Проверьте наличие и правильность данных!",
                  "Внимание",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Warning);
@@ -86,10 +76,7 @@ namespace test_connect
                     cmd.Parameters.AddWithValue("@price", price);
 
                     cmd.ExecuteNonQuery();
-
                 }
-
-                conn.Close();
             }
         }
 
@@ -109,8 +96,6 @@ namespace test_connect
                     cmd.ExecuteNonQuery();
 
                 }
-
-                conn.Close();
             }
         }
 
@@ -139,7 +124,5 @@ namespace test_connect
 
             return validatePrice && validateName;
         }
-
-
     }
 }

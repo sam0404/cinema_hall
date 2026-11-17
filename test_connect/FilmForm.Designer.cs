@@ -1,4 +1,4 @@
-﻿namespace test_connect
+﻿namespace cinema
 {
     partial class FilmForm
     {
@@ -97,7 +97,7 @@
             this.MinimizeBox = false;
             this.Name = "FilmForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FilmForm";
+            this.Text = "Фильмы";
             ((System.ComponentModel.ISupportInitialize)(this.dgvFilms)).EndInit();
             this.ResumeLayout(false);
 

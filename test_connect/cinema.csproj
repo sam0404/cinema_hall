@@ -46,20 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Add_Edit_FilmForm.cs">
+    <Compile Include="FilmFormAddEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Add_Edit_FilmForm.Designer.cs">
-      <DependentUpon>Add_Edit_FilmForm.cs</DependentUpon>
+    <Compile Include="FilmFormAddEdit.Designer.cs">
+      <DependentUpon>FilmFormAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="BasePlace.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Delete_FilmForm.cs">
+    <Compile Include="FilmFormDelete.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Delete_FilmForm.Designer.cs">
-      <DependentUpon>Delete_FilmForm.cs</DependentUpon>
+    <Compile Include="FilmFormDelete.Designer.cs">
+      <DependentUpon>FilmFormDelete.cs</DependentUpon>
     </Compile>
     <Compile Include="FilmForm.cs">
       <SubType>Form</SubType>
@@ -67,17 +67,37 @@
     <Compile Include="FilmForm.Designer.cs">
       <DependentUpon>FilmForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HallData.cs" />
+    <Compile Include="HallsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HallsForm.Designer.cs">
+      <DependentUpon>HallsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HallsFormAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HallsFormAddEdit.Designer.cs">
+      <DependentUpon>HallsFormAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HallsFormDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HallsFormDelete.Designer.cs">
+      <DependentUpon>HallsFormDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operation.cs" />
     <Compile Include="SeansForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SeansForm.Designer.cs">
       <DependentUpon>SeansForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="CinemaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="CinemaForm.Designer.cs">
+      <DependentUpon>CinemaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Hall.cs">
       <SubType>Form</SubType>
@@ -91,20 +111,41 @@
     <Compile Include="PlaceType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Add_Edit_FilmForm.resx">
-      <DependentUpon>Add_Edit_FilmForm.cs</DependentUpon>
+    <Compile Include="SeansFormAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeansFormAddEdit.Designer.cs">
+      <DependentUpon>SeansFormAddEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeansFormDelete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SeansFormDelete.Designer.cs">
+      <DependentUpon>SeansFormDelete.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FilmFormAddEdit.resx">
+      <DependentUpon>FilmFormAddEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Delete_FilmForm.resx">
-      <DependentUpon>Delete_FilmForm.cs</DependentUpon>
+    <EmbeddedResource Include="FilmFormDelete.resx">
+      <DependentUpon>FilmFormDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilmForm.resx">
       <DependentUpon>FilmForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HallsForm.resx">
+      <DependentUpon>HallsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HallsFormAddEdit.resx">
+      <DependentUpon>HallsFormAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HallsFormDelete.resx">
+      <DependentUpon>HallsFormDelete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SeansForm.resx">
       <DependentUpon>SeansForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="CinemaForm.resx">
+      <DependentUpon>CinemaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hall.resx">
       <DependentUpon>Hall.cs</DependentUpon>
@@ -118,6 +159,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SeansFormAddEdit.resx">
+      <DependentUpon>SeansFormAddEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SeansFormDelete.resx">
+      <DependentUpon>SeansFormDelete.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,4 +1,4 @@
-﻿namespace test_connect
+﻿namespace cinema
 {
     partial class Hall
     {
@@ -125,8 +125,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Hall";
-            this.Text = "Hall";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Hall_FormClosed);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Зал";
             this.Load += new System.EventHandler(this.Hall_Load);
             this.ResumeLayout(false);
 
